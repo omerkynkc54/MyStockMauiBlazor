@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using MyStockMauiBlazor.Models;
 using System.Diagnostics;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MyStockMauiBlazor.Data
 {
@@ -8,16 +9,31 @@ namespace MyStockMauiBlazor.Data
     {
         SQLiteAsyncConnection Database;
 
-        async Task Init()
+        private async Task Init()
         {
-            if (Database is not null)
+            if (connection != null)
                 return;
-            Debug.WriteLine("Database openinn..");
-            Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await Database.CreateTableAsync<User>();
-            await Database.CreateTableAsync<Stock>(); 
-            await Database.CreateTableAsync<Transaction>(); 
-            await Database.CreateTableAsync<LoginLog>();
+
+            try
+            {
+                connection = new SQLiteAsyncConnection(dbPath);
+
+                connection.Tracer = new Action<string>(q => Debug.WriteLine(q));
+                connection.Trace = true;
+
+                await CreateTables();
+                var count = await CountItems();
+
+                if (count == 0)
+                {
+                    await AddInitialData();
+                    await CheckData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         public async Task<List<Transaction>> GetAllTransaction()
