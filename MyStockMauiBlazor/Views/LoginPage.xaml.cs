@@ -23,7 +23,7 @@ public partial class LoginPage : ContentPage
         string password = passwordEntry.Text;
         Debug.WriteLine(username + ":" + password);
         bool isAuth = true;
-        isAuth = await _dbService.AuthenticateUserAsync(username, password);
+        //isAuth = await _dbService.AuthenticateUserAsync(username, password);
         if (isAuth) { 
             await Navigation.PushAsync(new StockViewPage());
             Navigation.RemovePage(this);

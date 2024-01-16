@@ -2,56 +2,89 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyStockMauiBlazor.Views.LoginPage"
-             Title="LoginPage">
-    <ScrollView>
-        <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+             Title="LoginPage"
+             NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Adjust height as needed for top half -->
+            <RowDefinition Height="*"/>
+            <!-- Remaining space for bottom half -->
+        </Grid.RowDefinitions>
 
-            <!-- Logo -->
-            <Image Source="Resources\AppIcon\appLogo.png" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100" />
+        <!-- Blue Top Half -->
+        <BoxView Color="#3298ff" 
+                 Grid.Row="0"/>
+        <!-- Logo -->
+        <Image Source="applogo.png" Grid.Row="0" HorizontalOptions="Center" WidthRequest="300" HeightRequest="300" />
 
-            <!-- Login form -->
-            <Entry x:Name="usernameEntry"
-                   Placeholder="Username"
-                   FontSize="Medium"
-                   TextColor="Black"
-                   PlaceholderColor="DarkGray"
-                   HorizontalOptions="Fill"
-                   VerticalOptions="Center" />
+        <ScrollView Grid.Row="1" VerticalOptions="CenterAndExpand">
+            <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Start">
 
-            <Entry x:Name="passwordEntry"
-                   Placeholder="Password"
-                   IsPassword="True"
-                   FontSize="Medium"
-                   TextColor="Black"
-                   PlaceholderColor="DarkGray"
-                   HorizontalOptions="Fill"
-                   VerticalOptions="Center" />
+                <!-- Login form -->
+                <Grid HorizontalOptions="Fill" VerticalOptions="Center" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <!-- Forgot password -->
-            <Label Text="Forgot password?"
+                    <!-- Username Icon -->
+                    <Image Grid.Column="0" Source="user_blue.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="0,0,10,0" />
+
+                    <!-- Username Entry -->
+                    <Entry Grid.Column="1" x:Name="usernameEntry"
+                       Placeholder="Username"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       PlaceholderColor="DarkGray"
+                       VerticalOptions="Center" />
+                </Grid>
+
+                <Grid HorizontalOptions="Fill" VerticalOptions="Center" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Password Icon -->
+                    <Image Grid.Column="0" Source="padlock_blue.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="0,0,10,0" />
+
+                    <!-- Password Entry -->
+                    <Entry Grid.Column="1" x:Name="passwordEntry"
+                       Placeholder="Password"
+                       IsPassword="True"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       PlaceholderColor="DarkGray"
+                       VerticalOptions="Center" />
+                </Grid>
+
+                <!-- Forgot password -->
+                <Label Text="Forgot password?"
                    HorizontalOptions="End"
-                   TextColor="Blue"
+                   TextColor="#3298ff"
                    FontAttributes="Bold" />
 
-            <!-- Login button -->
-            <Button x:Name="loginButton"
+                <!-- Login button -->
+                <Button x:Name="loginButton"
                     Text="Log in"
-                    BackgroundColor="#007bff"
+                    BackgroundColor="#3298ff"
                     TextColor="White"
                     CornerRadius="5"
                     HorizontalOptions="Fill"
                     VerticalOptions="Center" />
 
-            <!-- Sign up button -->
-            <Button x:Name="signupButton"
+                <!-- Sign up button -->
+                <Button x:Name="signupButton"
                     Text="Sign up"
-                    BorderColor="#007bff"
+                    BorderColor="#3298ff"
                     BorderWidth="1"
                     BackgroundColor="Transparent"
-                    TextColor="#007bff"
+                    TextColor="#3298ff"
                     CornerRadius="5"
                     HorizontalOptions="Fill"
                     VerticalOptions="Center" />
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

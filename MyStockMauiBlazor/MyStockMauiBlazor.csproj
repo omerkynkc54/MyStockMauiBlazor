@@ -57,6 +57,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Images\applogo.png" />
+      <None Remove="Resources\Images\padlock_blue.png" />
+      <None Remove="Resources\Images\user_blue.png" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
@@ -71,10 +77,6 @@
       <MauiXaml Update="Views\StockViewPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Resources\Images\" />
     </ItemGroup>
 
 </Project>
