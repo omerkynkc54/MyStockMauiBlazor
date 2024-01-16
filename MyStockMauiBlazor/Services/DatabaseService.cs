@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using MyStockMauiBlazor.Models;
 
 namespace MyStockMauiBlazor.Services
 {

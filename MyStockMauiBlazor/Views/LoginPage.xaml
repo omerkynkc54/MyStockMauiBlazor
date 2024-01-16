@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyStockMauiBlazor.Views.LoginPage"
+             Title="LoginPage">
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+
+            <!-- Logo -->
+            <Image Source="Resources\AppIcon\appLogo.png" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100" />
+
+            <!-- Login form -->
+            <Entry x:Name="usernameEntry"
+                   Placeholder="Username"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   PlaceholderColor="DarkGray"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Center" />
+
+            <Entry x:Name="passwordEntry"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   PlaceholderColor="DarkGray"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Center" />
+
+            <!-- Forgot password -->
+            <Label Text="Forgot password?"
+                   HorizontalOptions="End"
+                   TextColor="Blue"
+                   FontAttributes="Bold" />
+
+            <!-- Login button -->
+            <Button x:Name="loginButton"
+                    Text="Log in"
+                    BackgroundColor="#007bff"
+                    TextColor="White"
+                    CornerRadius="5"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center" />
+
+            <!-- Sign up button -->
+            <Button x:Name="signupButton"
+                    Text="Sign up"
+                    BorderColor="#007bff"
+                    BorderWidth="1"
+                    BackgroundColor="Transparent"
+                    TextColor="#007bff"
+                    CornerRadius="5"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
