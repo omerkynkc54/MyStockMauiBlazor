@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyStockMauiBlazor.Views.StockViewPage"
              Title="My Stocks"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="LightSlateGray">
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -14,7 +15,7 @@
             <RowDefinition Height="Auto"/>
             <!-- Bottom tabs area -->
         </Grid.RowDefinitions>
-        
+
         <!-- Header with username initial and title -->
         <Grid BackgroundColor="#3298ff" Padding="10" Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -33,31 +34,55 @@
         </Grid>
 
         <!-- Stocks portfolio section -->
-        <ScrollView Grid.Row="1">
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Stocks}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Stocks}" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BackgroundColor="white" CornerRadius="10">
                         <Grid Padding="10" ColumnSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <!-- New row for expanded content -->
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Name}" Grid.Column="0" />
-                            <Label Text="{Binding Quantity}" Grid.Column="1" />
-                            <Label Text="{Binding Profit, StringFormat='{0:C}'}" Grid.Column="2" TextColor="Green" />
-                            <!-- Add more details for expanded block -->
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
 
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextColor="Black" />
+                            <Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="1" TextColor="black"/>
+                            <Label Text="{Binding Profit, StringFormat='{0:C}'}" Grid.Row="0" Grid.Column="2" TextColor="Green" />
+
+                            <!-- StackLayout for expanded content, in the new row -->
+                            <StackLayout BindableLayout.ItemsSource="{Binding .}" 
+                 IsVisible="{Binding IsExpanded}" 
+                 Grid.Row="1" Grid.ColumnSpan="3">
+                                <Label Text="{Binding BuyPrice, StringFormat='Buy Price: {0:C}'}" TextColor="Black" />
+                                <Label Text="{Binding CurrentPrice, StringFormat='Current Price: {0:C}'}" TextColor="Black" />
+                                <Label Text="{Binding Total, StringFormat='Total: {0:C}'}" TextColor="Black" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnStockTapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <!-- Bottom tabs for navigation -->
-        <StackLayout Orientation="Horizontal" Grid.Row="2" BackgroundColor="WhiteSmoke">
-            <Button Text="My Stocks" BackgroundColor="Transparent" TextColor="#3298ff" />
-            <Button Text="+" BackgroundColor="Transparent" TextColor="#3298ff" />
-            <Button Text="Profile" BackgroundColor="Transparent" TextColor="#3298ff" />
-        </StackLayout>
+        <Grid Grid.Row="2" VerticalOptions="End" BackgroundColor="WhiteSmoke" HeightRequest="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="My Stocks" Grid.Column="0" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
+            <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="0" HorizontalOptions="End" />
+            <Button Text="+" Grid.Column="1" BackgroundColor="Transparent" TextColor="#3298ff" FontSize="20" FontAttributes="Bold" />
+            <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="1" HorizontalOptions="End" />
+            <Button Text="Profile" Grid.Column="2" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
+        </Grid>
     </Grid>
 </ContentPage>

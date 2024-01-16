@@ -12,7 +12,7 @@ public partial class LoginPage : ContentPage
     public LoginPage()
 	{
 		InitializeComponent();
-        _dbService = new StockDatabase();
+        
         loginButton.Clicked += OnLoginButtonClicked;
         signupButton.Clicked += OnSignupButtonClicked;
     }
@@ -23,7 +23,7 @@ public partial class LoginPage : ContentPage
         string password = passwordEntry.Text;
         
         bool isAuth = true;
-        isAuth = await _dbService.AuthenticateUserAsync(username, password);
+        //isAuth = await _dbService.AuthenticateUserAsync(username, password);
         if (isAuth) { 
             await Navigation.PushAsync(new StockViewPage());
             Navigation.RemovePage(this);
