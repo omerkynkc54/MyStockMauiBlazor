@@ -23,7 +23,7 @@ public partial class LoginPage : ContentPage
         if (isAuth)
         {
             // Assuming StockView is in the YourNamespace.Views namespace
-            await Navigation.PushAsync(new StockView());
+            await Navigation.PushAsync(new StockViewPage());
         }
         else
         {
