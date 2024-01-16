@@ -4,6 +4,7 @@ namespace MyStockMauiBlazor.Models
 {
     public class Stock
     {
+        [PrimaryKey, AutoIncrement]
         public int StockId { get; set; } // Primary Key
         public string StockCode { get; set; }
         public float? UnitPrice { get; set; }

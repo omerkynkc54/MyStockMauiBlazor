@@ -1,14 +1,17 @@
 ﻿using MyStockMauiBlazor.Views;
-namespace MyStockMauiBlazor
+using MyStockMauiBlazor.Data;
 
+namespace MyStockMauiBlazor;
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
-        }
+        var dbService = new StockDatabase();
+        //dbService.CreateTestUserIfNotExistsAsync().Wait();
+
+
+        MainPage = new NavigationPage(new LoginPage());
     }
 }

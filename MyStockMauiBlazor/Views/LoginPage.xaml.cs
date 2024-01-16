@@ -2,14 +2,17 @@ using System;
 using System.Diagnostics;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Layouts;
+using MyStockMauiBlazor.Data;
 
 namespace MyStockMauiBlazor.Views;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+    private readonly StockDatabase _dbService;
+    public LoginPage()
 	{
 		InitializeComponent();
+        _dbService = new StockDatabase();
         loginButton.Clicked += OnLoginButtonClicked;
         signupButton.Clicked += OnSignupButtonClicked;
     }
@@ -20,9 +23,8 @@ public partial class LoginPage : ContentPage
         string password = passwordEntry.Text;
         Debug.WriteLine(username + ":" + password);
         bool isAuth = true;
-        if (isAuth)
-        {
-            // Assuming StockView is in the YourNamespace.Views namespace
+        isAuth = await _dbService.AuthenticateUserAsync(username, password);
+        if (isAuth) { 
             await Navigation.PushAsync(new StockViewPage());
             Navigation.RemovePage(this);
         }
