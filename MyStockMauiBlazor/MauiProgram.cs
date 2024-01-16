@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MyStockMauiBlazor.Data;
 
 namespace MyStockMauiBlazor
 {
@@ -20,7 +21,7 @@ namespace MyStockMauiBlazor
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<StockDatabase>();
             return builder.Build();
         }
     }

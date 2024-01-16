@@ -21,9 +21,9 @@ public partial class LoginPage : ContentPage
         // Add logic for when the user clicks the login button
         string username = usernameEntry.Text;
         string password = passwordEntry.Text;
-        Debug.WriteLine(username + ":" + password);
+        
         bool isAuth = true;
-        //isAuth = await _dbService.AuthenticateUserAsync(username, password);
+        isAuth = await _dbService.AuthenticateUserAsync(username, password);
         if (isAuth) { 
             await Navigation.PushAsync(new StockViewPage());
             Navigation.RemovePage(this);

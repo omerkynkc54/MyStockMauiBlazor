@@ -8,10 +8,6 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        var dbService = new StockDatabase();
-        //dbService.CreateTestUserIfNotExistsAsync().Wait();
-
-
         MainPage = new NavigationPage(new LoginPage());
     }
 }
