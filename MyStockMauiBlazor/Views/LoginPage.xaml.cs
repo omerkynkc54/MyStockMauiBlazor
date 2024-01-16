@@ -24,6 +24,7 @@ public partial class LoginPage : ContentPage
         {
             // Assuming StockView is in the YourNamespace.Views namespace
             await Navigation.PushAsync(new StockViewPage());
+            Navigation.RemovePage(this);
         }
         else
         {
