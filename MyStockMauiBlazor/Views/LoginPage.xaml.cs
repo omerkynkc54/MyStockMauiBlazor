@@ -19,6 +19,16 @@ public partial class LoginPage : ContentPage
         string username = usernameEntry.Text;
         string password = passwordEntry.Text;
         Debug.WriteLine(username + ":" + password);
+        bool isAuth = true;
+        if (isAuth)
+        {
+            // Assuming StockView is in the YourNamespace.Views namespace
+            await Navigation.PushAsync(new StockView());
+        }
+        else
+        {
+            //errorLabel.text = "error occured"
+        }
 
         // TODO: Add authentication logic
     }
