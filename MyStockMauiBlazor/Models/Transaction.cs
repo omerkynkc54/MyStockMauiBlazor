@@ -4,7 +4,8 @@ namespace MyStockMauiBlazor.Models
 {
     public class Transaction
     {
-        public int TransactionId { get; set; } // Identity and Primary Key
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; } // Identity and Primary Key
         public int UserId { get; set; } // Foreign Key
         public int StockId { get; set; } // Foreign Key
         public float Amount { get; set; }
