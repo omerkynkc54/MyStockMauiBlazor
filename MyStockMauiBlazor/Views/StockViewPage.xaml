@@ -2,62 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyStockMauiBlazor.Views.StockViewPage"
-             Title="My Stocks"
-             NavigationPage.HasNavigationBar="False">
-
-    <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- Header area -->
-            <RowDefinition Height="*"/>
-            <!-- Stocks portfolio area -->
-            <RowDefinition Height="Auto"/>
-            <!-- Bottom tabs area -->
-        </Grid.RowDefinitions>
-        
-        <!-- Header with username initial and title -->
-        <Grid BackgroundColor="#3298ff" Padding="10" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Frame BackgroundColor="White"
-                   CornerRadius="30"
-                   HeightRequest="60"
-                   WidthRequest="60"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center">
-                <Label Text="U" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#3298ff"/>
-            </Frame>
-            <Label Text="My Stocks" FontAttributes="Bold" FontSize="22" VerticalOptions="Center" Margin="20,0,0,0" TextColor="White" Grid.Column="1"/>
-        </Grid>
-
-        <!-- Stocks portfolio section -->
-        <ScrollView Grid.Row="1">
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Stocks}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10" ColumnSpacing="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Name}" Grid.Column="0" />
-                            <Label Text="{Binding Quantity}" Grid.Column="1" />
-                            <Label Text="{Binding Profit, StringFormat='{0:C}'}" Grid.Column="2" TextColor="Green" />
-                            <!-- Add more details for expanded block -->
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
-
-        <!-- Bottom tabs for navigation -->
-        <StackLayout Orientation="Horizontal" Grid.Row="2" BackgroundColor="WhiteSmoke">
-            <Button Text="My Stocks" BackgroundColor="Transparent" TextColor="#3298ff" />
-            <Button Text="+" BackgroundColor="Transparent" TextColor="#3298ff" />
-            <Button Text="Profile" BackgroundColor="Transparent" TextColor="#3298ff" />
-        </StackLayout>
-    </Grid>
+             Title="StockViewPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
 </ContentPage>
