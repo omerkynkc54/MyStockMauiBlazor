@@ -35,7 +35,7 @@
             <Label Text="My Stocks" FontAttributes="Bold" FontSize="22" VerticalOptions="Center" Margin="20,0,0,0" TextColor="White" Grid.Column="1"/>
 
             <!-- Mock button -->
-            <Button Text="Mock" Grid.Column="2" Margin="0,0,10,0" VerticalOptions="Center" HorizontalOptions="End"/>
+            <Button Clicked="OnMockButtonClicked" Text="Mock" Grid.Column="2" Margin="0,0,10,0" VerticalOptions="Center" HorizontalOptions="End" FontSize="22"/>
         </Grid>
 
         <!-- Stocks portfolio section -->

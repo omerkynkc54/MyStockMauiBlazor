@@ -29,7 +29,7 @@ public partial class StockViewPage : ContentPage
     public async void OnMockButtonClicked(object sender, EventArgs e)
     {
         Stocks.FirstOrDefault().AddTransaction(new StockTransaction { UnitPrice = 37.00m, Quantity = 1 });
-    }
+    } 
     private async void OnCrudButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new NewTransactionPage());
