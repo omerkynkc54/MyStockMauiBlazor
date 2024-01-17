@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,41 +14,56 @@ namespace MyStockMauiBlazor.Data
     }
     public class DBDict
     {
-        private Dictionary<string, List<StockTransaction>> stockTransactions;
+        private static readonly DBDict _instance = new DBDict();
+        public static DBDict Instance => _instance;
 
-        public DBDict()
+        private ObservableCollection<Stock> _stocks = new ObservableCollection<Stock>();
+
+        // Ensure the constructor is private so it can't be instantiated from outside.
+        private DBDict() { }
+
+        public ObservableCollection<Stock> Stocks => _stocks;
+    }
+    public class Stock : BindableObject
+    {
+        private List<StockTransaction> _transactions = new List<StockTransaction>();
+
+        public string Name { get; set; }
+        public int Quantity => _transactions.Sum(tr => tr.Quantity);
+        public decimal BuyPrice => CalculateAverageBuyPrice();
+        public decimal CurrentPrice { get; set; }
+        public decimal Profit => (CurrentPrice - BuyPrice) * Quantity;
+        public decimal Total => Quantity * CurrentPrice;
+
+        private bool _isExpanded;
+        public bool IsExpanded
         {
-            stockTransactions = new Dictionary<string, List<StockTransaction>>();
+            get => _isExpanded;
+            set
+            {
+                if (_isExpanded != value)
+                {
+                    _isExpanded = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
-        public void AddTransaction(string stockName, decimal unitPrice, int quantity)
+        private decimal CalculateAverageBuyPrice()
         {
-            var transaction = new StockTransaction { UnitPrice = unitPrice, Quantity = quantity };
-
-            if (!stockTransactions.ContainsKey(stockName))
-            {
-                stockTransactions[stockName] = new List<StockTransaction>();
-            }
-            stockTransactions[stockName].Add(transaction);
+            var totalCost = _transactions.Sum(tr => tr.UnitPrice * tr.Quantity);
+            var totalQuantity = _transactions.Sum(tr => tr.Quantity);
+            return totalQuantity > 0 ? totalCost / totalQuantity : 0;
         }
 
-        public void DeleteTransaction(string stockName, int transactionIndex)
+        public void AddTransaction(StockTransaction transaction)
         {
-            if (stockTransactions.ContainsKey(stockName) && transactionIndex < stockTransactions[stockName].Count)
-            {
-                stockTransactions[stockName].RemoveAt(transactionIndex);
-            }
-        }
-
-        public decimal CalculateAverageBuyPrice(string stockName)
-        {
-            if (stockTransactions.ContainsKey(stockName) && stockTransactions[stockName].Any())
-            {
-                var totalCost = stockTransactions[stockName].Sum(tr => tr.UnitPrice * tr.Quantity);
-                var totalQuantity = stockTransactions[stockName].Sum(tr => tr.Quantity);
-                return totalQuantity > 0 ? totalCost / totalQuantity : 0;
-            }
-            return 0;
+            _transactions.Add(transaction);
+            OnPropertyChanged(nameof(BuyPrice));
+            OnPropertyChanged(nameof(Quantity));
+            OnPropertyChanged(nameof(Profit));
+            OnPropertyChanged(nameof(Total
+                ));
         }
     }
 }

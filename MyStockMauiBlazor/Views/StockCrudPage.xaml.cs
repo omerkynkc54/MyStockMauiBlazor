@@ -8,7 +8,6 @@ namespace MyStockMauiBlazor.Views
         public NewTransactionPage()
         {
             InitializeComponent();
-            dbDict = new DBDict();
         }
 
         private void OnSellClicked(object sender, EventArgs e)
@@ -42,20 +41,21 @@ namespace MyStockMauiBlazor.Views
         // Method to handle adding a transaction
         private void AddTransaction(string stockName, decimal unitPrice, int quantity)
         {
-            dbDict.AddTransaction(stockName, unitPrice, quantity);
+            var stockService = DBDict.Instance;
+            //stockService.AddTransaction(stockName, unitPrice, quantity);
             UpdateAveragePriceDisplay(stockName);
         }
 
         // Method to handle deleting a transaction
         private void DeleteTransaction(string stockName, int transactionIndex)
         {
-            dbDict.DeleteTransaction(stockName, transactionIndex);
+            //dbDict.DeleteTransaction(stockName, transactionIndex);
             UpdateAveragePriceDisplay(stockName);
         }
 
         private void UpdateAveragePriceDisplay(string stockName)
         {
-            decimal averagePrice = dbDict.CalculateAverageBuyPrice(stockName);
+            //decimal averagePrice = dbDict.CalculateAverageBuyPrice(stockName);
             // Update your UI here with the calculated averagePrice
             // For example: averagePriceLabel.Text = $"Average Price: {averagePrice:C}";
         }
