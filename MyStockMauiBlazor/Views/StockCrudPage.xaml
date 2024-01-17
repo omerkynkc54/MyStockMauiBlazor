@@ -35,11 +35,11 @@
 
         <!-- Form section -->
         <StackLayout Grid.Row="1" Padding="20">
-            <Entry Placeholder="Ticker..." TextColor="Black" BackgroundColor="LightSlateGray" Margin="0,10" />
-            <Entry Placeholder="Unit Count..." Keyboard="Numeric" TextColor="Black" BackgroundColor="LightSlateGray" Margin="0,10" />
-            <Entry Placeholder="Unit Price..." Keyboard="Numeric" TextColor="Black" BackgroundColor="LightSlateGray" Margin="0,10" />
+            <Entry x:Name="stockNameEntry" Placeholder="Ticker..." TextColor="Black" BackgroundColor="LightSlateGray" Margin="0,10" />
+            <Entry x:Name="quantityEntry" Placeholder="Unit Count..." Keyboard="Numeric" TextColor="Black" BackgroundColor="LightSlateGray" Margin="0,10" />
+            <Entry x:Name="unitPriceEntry" Placeholder="Unit Price..." Keyboard="Numeric" TextColor="Black" BackgroundColor="LightSlateGray" Margin="0,10" />
             <Button Text="Sell" BackgroundColor="OrangeRed" TextColor="White" Margin="0,10" />
-            <Button Text="Buy" BackgroundColor="ForestGreen" TextColor="White" Margin="0,10" />
+            <Button Clicked="OnBuyClicked" Text="Buy" BackgroundColor="ForestGreen" TextColor="White" Margin="0,10" />
         </StackLayout>
 
         <!-- Bottom tabs for navigation -->
