@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Json;
 using Microsoft.Maui.Controls;
@@ -16,12 +17,19 @@ public partial class StockViewPage : ContentPage
         InitializeComponent();
         LoadMockStockData();
         BindingContext = this;
-        foreach (var stock in Stocks)
+        InitializeAsync().ContinueWith(t =>
         {
-            stock.UpdatePriceFromApi(_httpClient, _apiToken);
-        }
+            if (t.Exception != null)
+            {
+                // Handle exceptions
+                Debug.WriteLine($"Initialization failed: {t.Exception}");
+            }
+        });
     }
-
+    public async void OnMockButtonClicked(object sender, EventArgs e)
+    {
+        Stocks.FirstOrDefault().AddTransaction(new StockTransaction { UnitPrice = 37.00m, Quantity = 1 });
+    }
     private async void OnCrudButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new NewTransactionPage());
@@ -37,9 +45,9 @@ public partial class StockViewPage : ContentPage
     private void LoadMockStockData()
     {
         // Load your mock data here
-        var stockAAPL = new Stock { Name = "AAPL", CurrentPrice = 140.00m };
-        var stockTSLA = new Stock { Name = "TSLA", CurrentPrice = 1200.00m };
-        var stockMSFT = new Stock { Name = "MSFT", CurrentPrice = 1200.00m };
+        var stockAAPL = new Stock { Name = "AAPL", CurrentPrice = 0m };
+        var stockTSLA = new Stock { Name = "TSLA", CurrentPrice = 0m };
+        var stockMSFT = new Stock { Name = "MSFT", CurrentPrice = 0m };
 
         stockAAPL.AddTransaction(new StockTransaction { UnitPrice = 120.00m, Quantity = 10 });
         stockTSLA.AddTransaction(new StockTransaction { UnitPrice = 1000.00m, Quantity = 5 });
@@ -61,7 +69,32 @@ public partial class StockViewPage : ContentPage
         }
     }
 
-    // Rest of your StockViewPage code...
+    private async Task InitializeAsync()
+    {
+        await UpdatePricesFromApi();
+        // Any other async initialization code can go here
+    }
+
+
+    private async Task UpdatePricesFromApi()
+    {
+        Debug.WriteLine("Starting fetch");
+        string endpoint = $"https://api.stockdata.org/v1/data/quote?symbols=AAPL,TSLA,MSFT&api_token={_apiToken}";
+        var response = await _httpClient.GetFromJsonAsync<StockDataResponse>(endpoint);
+        Debug.WriteLine(response);
+        if (response?.Data != null)
+        {
+            foreach (var stockQuote in response.Data)
+            {
+                var stock = Stocks.FirstOrDefault(s => s.Name == stockQuote.Ticker);
+                if (stock != null)
+                {
+                    Debug.WriteLine(stock);
+                    stock.CurrentPrice = (decimal)stockQuote.Price;
+                }
+            }
+        }
+    }
 }
 
 public class Stock : BindableObject
@@ -105,10 +138,11 @@ public class Stock : BindableObject
             }
         }
     }
-    public async Task UpdatePriceFromApi(HttpClient httpClient, string apiToken)
+
+    public async Task UpdatefghPriceFromApi(HttpClient httpClient, string apiToken)
     {
         string endpoint = $"https://api.stockdata.org/v1/data/quote?symbols={Name}&api_token={apiToken}";
-        await Task.Delay(3000);
+        await Task.Delay(000);
         var response = await httpClient.GetFromJsonAsync<StockDataResponse>(endpoint);
 
         if (response?.Data != null)
