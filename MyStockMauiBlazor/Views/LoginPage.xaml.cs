@@ -16,12 +16,12 @@ public partial class LoginPage : ContentPage
     }
     private async void OnLoginButtonClicked(object sender, EventArgs e)
     {
-        // Add logic for when the user clicks the login button
         string username = usernameEntry.Text;
         string password = passwordEntry.Text;
 
         bool isAuth = true;
-        //isAuth = await _dbService.AuthenticateUserAsync(username, password);
+
+        //isAuth = await _dbService.AuthenticateUserAsync(username, password); NOT WORKING
         if (isAuth)
         {
             await Navigation.PushAsync(new StockViewPage());
@@ -31,13 +31,10 @@ public partial class LoginPage : ContentPage
         {
             //errorLabel.text = "error occured"
         }
-
-        // TODO: Add authentication logic
     }
 
     private async void OnSignupButtonClicked(object sender, EventArgs e)
     {
-        // Add logic for when the user clicks the sign up button
-        // Usually navigating to a sign-up page or similar
+        Debug.WriteLine("Signup Button Click");
     }
 }

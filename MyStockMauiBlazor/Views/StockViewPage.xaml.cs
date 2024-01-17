@@ -8,10 +8,9 @@ namespace MyStockMauiBlazor.Views;
 
 public partial class StockViewPage : ContentPage
 {
-    private readonly string _apiToken = "LAYQgGjEapzLzWhEhepvEHzNAF7KjME8ukVqfdmL"; // Use your API token here
+    private readonly string _apiToken = "LAYQgGjEapzLzWhEhepvEHzNAF7KjME8ukVqfdmL";
     private HttpClient _httpClient = new HttpClient();
     public ObservableCollection<Stock> Stocks { get; } = new ObservableCollection<Stock>();
-
     public StockViewPage()
     {
         InitializeComponent();
@@ -21,7 +20,6 @@ public partial class StockViewPage : ContentPage
         {
             if (t.Exception != null)
             {
-                // Handle exceptions
                 Debug.WriteLine($"Initialization failed: {t.Exception}");
             }
         });
@@ -44,7 +42,6 @@ public partial class StockViewPage : ContentPage
     }
     private void LoadMockStockData()
     {
-        // Load your mock data here
         var stockAAPL = new Stock { Name = "AAPL", CurrentPrice = 0m };
         var stockTSLA = new Stock { Name = "TSLA", CurrentPrice = 0m };
         var stockMSFT = new Stock { Name = "MSFT", CurrentPrice = 0m };
@@ -55,7 +52,6 @@ public partial class StockViewPage : ContentPage
         stockMSFT.AddTransaction(new StockTransaction { UnitPrice = 850.00m, Quantity = 7 });
         stockTSLA.AddTransaction(new StockTransaction { UnitPrice = 1200.00m, Quantity = -2 });
 
-        // Add the stocks to the ObservableCollection
         Stocks.Add(stockAAPL);
         Stocks.Add(stockTSLA);
         Stocks.Add(stockMSFT);
@@ -72,7 +68,6 @@ public partial class StockViewPage : ContentPage
     private async Task InitializeAsync()
     {
         await UpdatePricesFromApi();
-        // Any other async initialization code can go here
     }
 
 
@@ -142,7 +137,7 @@ public class Stock : BindableObject
     public async Task UpdatefghPriceFromApi(HttpClient httpClient, string apiToken)
     {
         string endpoint = $"https://api.stockdata.org/v1/data/quote?symbols={Name}&api_token={apiToken}";
-        await Task.Delay(000);
+        await Task.Delay(000); // Might Break it delete later
         var response = await httpClient.GetFromJsonAsync<StockDataResponse>(endpoint);
 
         if (response?.Data != null)
@@ -168,8 +163,7 @@ public class Stock : BindableObject
         OnPropertyChanged(nameof(BuyPrice));
         OnPropertyChanged(nameof(Quantity));
         OnPropertyChanged(nameof(Profit));
-        OnPropertyChanged(nameof(Total
-            ));
+        OnPropertyChanged(nameof(Total));
     }
 }
 

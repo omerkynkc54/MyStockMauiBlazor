@@ -12,9 +12,7 @@ namespace MyStockMauiBlazor.Views
         }
 
         private void OnSellClicked(object sender, EventArgs e)
-        {
-            // Logic for selling stocks
-        }
+        { }
         private async void OnCrudButton1Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NewTransactionPage());
@@ -29,35 +27,27 @@ namespace MyStockMauiBlazor.Views
         }
         private void OnBuyClicked(object sender, EventArgs e)
         {
-            // Assuming you have Entry fields for stockName, unitPrice, and quantity
             string stockName = stockNameEntry.Text;
-            decimal unitPrice = decimal.Parse(unitPriceEntry.Text); // Add validation
-            int quantity = int.Parse(quantityEntry.Text); // Add validation
-
-            AddTransaction(stockName, unitPrice, quantity);
+            decimal unitPrice = decimal.Parse(unitPriceEntry.Text);
+            int quantity = int.Parse(quantityEntry.Text);
+            //AddTransaction(stockName, unitPrice, quantity); Not Working
         }
 
         private DBDict dbDict;
-
-        // Method to handle adding a transaction
         private void AddTransaction(string stockName, decimal unitPrice, int quantity)
         {
             dbDict.AddTransaction(stockName, unitPrice, quantity);
             UpdateAveragePriceDisplay(stockName);
         }
 
-        // Method to handle deleting a transaction
         private void DeleteTransaction(string stockName, int transactionIndex)
         {
             dbDict.DeleteTransaction(stockName, transactionIndex);
             UpdateAveragePriceDisplay(stockName);
         }
-
         private void UpdateAveragePriceDisplay(string stockName)
         {
             decimal averagePrice = dbDict.CalculateAverageBuyPrice(stockName);
-            // Update your UI here with the calculated averagePrice
-            // For example: averagePriceLabel.Text = $"Average Price: {averagePrice:C}";
         }
     }
 }

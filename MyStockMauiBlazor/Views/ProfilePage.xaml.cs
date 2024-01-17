@@ -7,7 +7,6 @@ namespace MyStockMauiBlazor.Views
         public ProfilePage()
         {
             InitializeComponent();
-            // Additional initialization can be done here
         }
 
         private async void OnCrudButton2Clicked(object sender, EventArgs e)
