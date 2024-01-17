@@ -58,7 +58,7 @@
                             <StackLayout BindableLayout.ItemsSource="{Binding .}" 
                  IsVisible="{Binding IsExpanded}" 
                  Grid.Row="1" Grid.ColumnSpan="3">
-                                <Label Text="{Binding BuyPrice, StringFormat='Buy Price: {0:C}'}" TextColor="Black" />
+                                <Label Text="{Binding BuyPrice, StringFormat='Avg. Buy Price: {0:C}'}" TextColor="Black" />
                                 <Label Text="{Binding CurrentPrice, StringFormat='Current Price: {0:C}'}" TextColor="Black" />
                                 <Label Text="{Binding Total, StringFormat='Total: {0:C}'}" TextColor="Black" />
                             </StackLayout>
