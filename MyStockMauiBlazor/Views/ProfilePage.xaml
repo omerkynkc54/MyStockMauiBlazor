@@ -2,11 +2,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyStockMauiBlazor.Views.ProfilePage"
-             Title="ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Profile"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="LightSlateGray">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Title area -->
+            <RowDefinition Height="*"/>
+            <!-- Profile details area -->
+            <RowDefinition Height="Auto"/>
+            <!-- Bottom tabs area -->
+        </Grid.RowDefinitions>
+
+        <!-- Title with blue background -->
+        <BoxView Grid.Row="0" Color="#3298ff" HeightRequest="60"/>
+        <Label Text="Profile" Grid.Row="0" FontAttributes="Bold" FontSize="22"
+               VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"/>
+
+        <!-- Profile details section -->
+        <StackLayout Grid.Row="1" Padding="20" Spacing="20" HorizontalOptions="Center" VerticalOptions="Start">
+            <!-- Initial Letter Circle -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="90"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="0,20,0,0">
+                <Label Text="U" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#3298ff" FontSize="50"/>
+            </Frame>
+            <!-- Username -->
+            <Label Text="Username" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="35"/>
+            <!-- Current Password Entry -->
+            <Entry Placeholder="Current Password" IsPassword="True" TextColor="White" BackgroundColor="SlateGray" Margin="0,10" PlaceholderColor="White"/>
+            <!-- New Password Entry -->
+            <Entry Placeholder="New Password" IsPassword="True" TextColor="White" BackgroundColor="SlateGray" Margin="0,10" PlaceholderColor="White" />
+            <Button Text="Change Password" Grid.Column="0" BackgroundColor="White" TextColor="#3298ff" FontAttributes="Bold"/>
+        </StackLayout>
+
+        <!-- Bottom tabs for navigation -->
+        <Grid Grid.Row="3" VerticalOptions="End" BackgroundColor="WhiteSmoke" HeightRequest="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Clicked="OnMyStocksButton2Clicked" x:Name="myStocksButton" Text="My Stocks" Grid.Column="0" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
+            <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="0" HorizontalOptions="End" />
+            <Button Clicked="OnCrudButton2Clicked" x:Name="crudButton" Text="+" Grid.Column="1" BackgroundColor="Transparent" TextColor="#3298ff" FontSize="20" FontAttributes="Bold" />
+            <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="1" HorizontalOptions="End" />
+            <Button Clicked="OnProfileButton2Clicked" x:Name="profileButton" Text="Profile" Grid.Column="2" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
+        </Grid>
+    </Grid>
 </ContentPage>

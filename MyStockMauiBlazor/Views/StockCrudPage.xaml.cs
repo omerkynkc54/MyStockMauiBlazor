@@ -15,7 +15,18 @@ namespace MyStockMauiBlazor.Views
         {
             // Logic for selling stocks
         }
-
+        private async void OnCrudButton1Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewTransactionPage());
+        }
+        private async void OnMyStocksButton1Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new StockViewPage());
+        }
+        private async void OnProfileButton1Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage());
+        }
         private void OnBuyClicked(object sender, EventArgs e)
         {
             // Assuming you have Entry fields for stockName, unitPrice, and quantity

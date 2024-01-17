@@ -78,11 +78,11 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="My Stocks" Grid.Column="0" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
+            <Button Clicked="OnMyStocksButtonClicked" x:Name="myStocksButton" Text="My Stocks" Grid.Column="0" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
             <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="0" HorizontalOptions="End" />
-            <Button x:Name="crudButton" Text="+" Grid.Column="1" BackgroundColor="Transparent" TextColor="#3298ff" FontSize="20" FontAttributes="Bold" />
+            <Button Clicked="OnCrudButtonClicked" x:Name="crudButton" Text="+" Grid.Column="1" BackgroundColor="Transparent" TextColor="#3298ff" FontSize="20" FontAttributes="Bold" />
             <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="1" HorizontalOptions="End" />
-            <Button Text="Profile" Grid.Column="2" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
+            <Button Clicked="OnProfileButtonClicked" x:Name="profileButton" Text="Profile" Grid.Column="2" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
         </Grid>
     </Grid>
 </ContentPage>

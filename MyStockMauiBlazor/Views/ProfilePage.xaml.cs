@@ -1,9 +1,26 @@
-namespace MyStockMauiBlazor.Views;
+using Microsoft.Maui.Controls;
 
-public partial class ProfilePage : ContentPage
+namespace MyStockMauiBlazor.Views
 {
-	public ProfilePage()
-	{
-		InitializeComponent();
-	}
+    public partial class ProfilePage : ContentPage
+    {
+        public ProfilePage()
+        {
+            InitializeComponent();
+            // Additional initialization can be done here
+        }
+
+        private async void OnCrudButton2Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewTransactionPage());
+        }
+        private async void OnMyStocksButton2Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new StockViewPage());
+        }
+        private async void OnProfileButton2Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage());
+        }
+    }
 }
