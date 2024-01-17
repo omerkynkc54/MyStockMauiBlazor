@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Maui.Controls;
 
 namespace MyStockMauiBlazor.Views
@@ -7,11 +8,14 @@ namespace MyStockMauiBlazor.Views
     {
         public ObservableCollection<Stock> Stocks { get; } = new ObservableCollection<Stock>();
 
+
+
         public StockViewPage()
         {
             InitializeComponent();
             LoadMockStockData();
             BindingContext = this;
+            crudButton.Clicked += OnCrudButtonClicked;
         }
 
         private void LoadMockStockData()
@@ -29,7 +33,12 @@ namespace MyStockMauiBlazor.Views
                 stock.IsExpanded = !stock.IsExpanded;
             }
         }
+        private async void OnCrudButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewTransactionPage());
+        }
     }
+
 
     public class Stock : BindableObject
     {

@@ -21,7 +21,7 @@ namespace MyStockMauiBlazor
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton<StockDatabase>();
+            builder.Services.AddSingleton<DBDict>();
             return builder.Build();
         }
     }

@@ -80,7 +80,7 @@
             </Grid.ColumnDefinitions>
             <Button Text="My Stocks" Grid.Column="0" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
             <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="0" HorizontalOptions="End" />
-            <Button Text="+" Grid.Column="1" BackgroundColor="Transparent" TextColor="#3298ff" FontSize="20" FontAttributes="Bold" />
+            <Button x:Name="crudButton" Text="+" Grid.Column="1" BackgroundColor="Transparent" TextColor="#3298ff" FontSize="20" FontAttributes="Bold" />
             <BoxView BackgroundColor="#3298ff" WidthRequest="1" VerticalOptions="Fill" Grid.Column="1" HorizontalOptions="End" />
             <Button Text="Profile" Grid.Column="2" BackgroundColor="Transparent" TextColor="#3298ff" FontAttributes="Bold"/>
         </Grid>
